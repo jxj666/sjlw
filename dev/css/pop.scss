@@ -1,0 +1,360 @@
+$blueblack:#32333c;
+$mainblue:#306ee9;
+$lightgray: #dee0e2;
+$gray8: #878998;
+
+.pop_base {
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+    background: rgba(50, 51, 60, 0.3);
+    z-index: 1000;
+    .box {
+        padding: 1px;
+        width: 510px;
+        min-height: 100px;
+        max-height: 100%;
+        overflow-y: auto;
+        background: #fff;
+        border-radius: 5px;
+        margin: 0 auto 0;
+        text-align: center;
+        h2 {
+            line-height: 80px;
+            font-size: 18px;
+            color: $mainblue;
+        }
+        .type3 {
+            padding: 5px 30px;
+            line-height: 60px;
+            font-size: 16px;
+            text-align: left;
+            select {
+                width: 165px;
+                height: 38px;
+                border: 1px solid $mainblue;
+                border-radius: 3px;
+                box-sizing: border-box;
+                padding: 0 10px 0 20px;
+                font-size: 14px;
+                margin-left: 10px;
+                background: url('../../img/arrow_down_03.jpg') no-repeat 90% center;
+            }
+        }
+
+        .type4 {
+
+            text-align: left;
+            padding: 5px 30px;
+
+            line-height: 60px;
+            font-size: 16px;
+
+            .check {
+                line-height: 28px;
+                width: 80%;
+                float: right;
+                .check_list {
+                    margin-bottom: 10px;
+                    border-bottom: 1px solid #dee0e2;
+                    padding-bottom: 10px;
+
+                    span {
+                        font-size: 16px;
+                        color: #306ee9;
+                    }
+                    div {
+                        color: #c2c3ca;
+                        font-size: 14px;
+                        select {
+
+                            text-align: center;
+                            width: 100px;
+                            height: 30px;
+                            line-height: 30px;
+                            border: 1px solid #c2c3ca;
+                        }
+                        input {
+                            text-align: center;
+                            width: 100px;
+                            height: 30px;
+                            line-height: 30px;
+                            border: 1px solid #c2c3ca;
+                            border-radius: 5px;
+                        }
+                        select {
+                            border: 1px solid #306ee9;
+                        }
+                    }
+                }
+                input {
+                    margin-top: -5px;
+                    vertical-align: 2px;
+                }
+                span {
+                    padding: 0 5px;
+                    color: #999aa7;
+                    font-size: 14px;
+                }
+                select {
+                    border: 1px solid $mainblue;
+                    background: url('../../img/arrow_down_03.jpg') no-repeat 90% center;
+                }
+            }
+        }
+        .type5 {
+            text-align: left;
+            padding: 5px 30px;
+            line-height: 60px;
+            font-size: 16px;
+            input {
+                margin-left: 10px;
+                width: 116px;
+                height: 36px;
+                padding: 5px;
+                line-height: 36px;
+                border: 1px solid $lightgray;
+                border-radius: 5px;
+                text-align: center;
+            }
+        }
+
+        .type1 {
+            height: 128px;
+            line-height: 128px;
+            font-size: 16px;
+            select {
+                width: 165px;
+                height: 38px;
+                border: 1px solid $mainblue;
+                border-radius: 3px;
+                box-sizing: border-box;
+                padding: 0 10px 0 20px;
+                font-size: 14px;
+                margin-left: 10px;
+                background: url('../../img/arrow_down_03.jpg') no-repeat 90% center;
+            }
+        }
+        .type2 {
+            text-align: center;
+            line-height: 100px;
+            margin-bottom: 10px;
+            button {
+                border: 0;
+                width: 115px;
+                height: 48px;
+                color: #fff;
+                font-size: 20px;
+                border-radius: 3px;
+                margin: 0 40px;
+            }
+            .bg_blue {
+                background: $mainblue;
+            }
+            .bg_gray {
+                background: #c2c3ca;
+            }
+        }
+        .type7 {
+            .right {
+                position: relative;
+                height: 250px;
+                overflow: auto;
+            }
+        }
+        .type3,
+        .type6,
+        .type7,
+        .type8,
+        .type9 {
+            padding: 5px 5px 5px 0px;
+            line-height: 60px;
+            font-size: 16px;
+            text-align: left;
+            .left {
+                position: relative;
+                float: left;
+                width: 25%;
+                text-align: right;
+            }
+            .right {
+                position: relative;
+                float: right;
+                width: 75%;
+            }
+            .explain {
+                font-size: 12px;
+                color: #c2c3ca;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            .checks {
+                height: auto;
+                padding: 0;
+                margin: 0;
+                line-height: 70px;
+                .check {
+                    width: 120px;
+                    height: 36px;
+                    text-align: center;
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 36px;
+                    border: 1px solid #c2c3ca;
+                    border-radius: 5px;
+                    color: #c2c3ca;
+                    margin: 0 10px;
+                    &.act {
+                        color: #306ee9;
+                        border: 1px solid #306ee9;
+                    }
+                }
+                .add_channel {
+                    margin-left: 0;
+                }
+            }
+
+
+            .money_l {
+                position: relative;
+                color: #c2c3ca;
+                width: 50%;
+                display: block;
+                float: left;
+                line-height: 40px;
+                height: 40px;
+                text-align: right;
+                margin: 0;
+                .list_l {
+                    display: inline-block;
+                    width: 35%;
+                    font-size: 12px;
+                    text-align: right;
+                }
+                .list_r {
+                    display: inline-block;
+                    width: 60%;
+                    font-size: 12px;
+
+                    select {
+                        position: relative;
+                        top: 1px;
+                        width: 100%;
+                        border: 1px solid #c2c3ca;
+                        height: 30px;
+                        line-height: 30px;
+                        display: inline-block;
+                        background: url('../../img/arrow_down_03.jpg') no-repeat 90% center;
+                    }
+                }
+                .placeholder {
+                    position: absolute;
+                    right: 10%;
+                    top: 0;
+                }
+                input {
+                    width: 80%;
+                    border: 1px solid #c2c3ca;
+                    border-radius: 5px;
+                    height: 28px;
+                    line-height: 28px;
+                    font-size: 14px;
+                    box-sizing: border-box;
+                    padding: 0 5px;
+                    text-align: left;
+                }
+            }
+            .channel {
+                border: 1px solid #dee0e2;
+                width: 400px;
+                box-shadow: 0 0 5px #dee0e2;
+                border-radius: 5px;
+                margin-bottom: 10px;
+
+                .channel_h {
+                    text-align: left;
+                    color: #306ee9;
+                    line-height: 30px;
+                    padding: 5px 10px;
+                    border-bottom: 1px dashed #dee0e2;
+                    position: relative;
+                    font-size: 14px;
+                    .close {
+                        position: absolute;
+                        right: 10px;
+                        cursor: pointer;
+                    }
+                }
+                .channel_b {
+                    text-align: right;
+                    color: #c2c3ca;
+                    padding: 10px 20px 10px 0px;
+                    .channel_l {
+                        position: relative;
+                        width: 50%;
+                        display: block;
+                        float: left;
+                        line-height: 40px;
+                        height: 40px;
+
+                        margin: 0;
+                        .placeholder {
+                            position: absolute;
+                            right: 10%;
+                            top: 0;
+                        }
+                        input {
+                            text-align: left;
+                            width: 90%;
+                            border: 1px solid #c2c3ca;
+                            border-radius: 5px;
+                            height: 28px;
+                            line-height: 28px;
+                            font-size: 14px;
+                            box-sizing: border-box;
+                            padding: 0 5px;
+                        }
+                        .list_l {
+                            display: inline-block;
+                            width: 35%;
+                            font-size: 12px;
+                            text-align: right;
+                        }
+                        .list_r {
+                            display: inline-block;
+                            width: 60%;
+                            font-size: 12px;
+                            select {
+                                position: relative;
+                                top: 1px;
+                                width: 100%;
+                                border: 1px solid #c2c3ca;
+                                height: 30px;
+                                line-height: 30px;
+                                display: inline-block;
+                                background: url('../../img/arrow_down_03.jpg') no-repeat 90% center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pop_base,
+.pop_wait_news {
+    .box {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        height: 600px;
+        margin-left: -300px;
+        width: 600px;
+    }
+}

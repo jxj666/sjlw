@@ -1,0 +1,251 @@
+
+ #g_nav {
+     width: 100%;
+     /*background:#3b83ee;*/
+     background: #fff;
+     height: 70px;
+     margin-bottom: 20px;
+ }
+
+ #g_nav .nav_box {
+     position: relative;
+     width: 1200px;
+     margin: 0 auto;
+     height: 70px;
+     /*background:url(../../img/nav_03.jpg) no-repeat center 0*/
+     background: url(/img/logo.png) no-repeat 6px center
+ }
+
+ #g_nav .nav_box>div {
+     float: left;
+     height: 100%;
+     line-height: 70px
+ }
+
+ #g_nav .nav_box .nav_title {
+     width: 200px
+ }
+
+ #g_nav .nav_box .nav_list ul li {
+     float: left
+ }
+
+ #g_nav .nav_box .nav_list ul li a {
+     /*min-width:100px*/
+     ;
+     margin: 0 25px;
+     display: block;
+     font-size: 18px;
+     color: #333;
+     text-align: center
+ }
+
+ #g_nav .nav_box .nav_list ul li a.active {
+     /*background:#fff;*/
+     color: #3b83ee;
+     height: 55px;
+     border-bottom: 1px solid #3b83ee
+ }
+
+ #g_nav .pop {
+     width: 90px;
+     position: absolute;
+     background: #fff;
+     top: 55px;
+     line-height: 32px;
+     z-index: 101;
+     font-size: 12px;
+     color: #32333c;
+     text-indent: 15px;
+     border: 1px solid #eee
+ }
+
+ #g_nav .pop ul li {
+     z-index: 102;
+     position: relative;
+     cursor: pointer;
+ }
+
+ #g_nav .pop ul li:hover {
+     background: #3b83ee;
+     color: #fff
+ }
+
+ #g_nav .pop ul li span {
+     position: absolute;
+     width: 16px;
+     font-size: 12px;
+     height: 16px;
+     line-height: 16px;
+     text-indent: 0;
+     text-align: center;
+     border-radius: 8px;
+     font-size: #000;
+     background: #ffd101;
+     top: 8px;
+     right: 8px
+ }
+
+ #g_nav .pop .up_arrow {
+     width: 15px;
+     height: 15px;
+     z-index: 100;
+     top: 0;
+     left: 0;
+     position: absolute;
+     background: #fff;
+     -webkit-transform: translate(37.5px, -7.5px) rotate(45deg);
+     -ms-transform: translate(37.5px, -7.5px) rotate(45deg);
+     transform: translate(37.5px, -7.5px) rotate(45deg)
+ }
+
+ #g_nav .pop.pop_alert {
+     z-index: 101;
+     height: 96px;
+     right: 174px;
+     line-height: 32px
+ }
+
+ #g_nav .pop.pop_exit {
+     z-index: 101;
+     height: 32px;
+     right: 25px;
+     text-align: center;
+     line-height: 32px;
+     text-indent: 0;
+     cursor: pointer
+ }
+
+ .user-box {
+     width: 100%;
+     height: 30px;
+     line-height: 30px;
+     background: transparent;
+     font-size: 14px;
+     color: #666;
+     /*overflow: hidden;*/
+     position: relative;
+ }
+
+ .user-box .nav_user {
+     float: right;
+     width: 200px;
+     box-sizing: border-box;
+ }
+
+ .user-box .nav_user>div {
+     position: relative;
+     float: left;
+     /*line-height:58px;*/
+ }
+
+ .user-box .nav_user .hirt {
+     /*width:60px;*/
+     cursor: pointer;
+ }
+
+ .user-box .nav_user .hirt img {
+     /*width:26px;*/
+     /*display:block;*/
+     /*margin:17px auto;*/
+     margin-right: 10px;
+ }
+
+ .user-box .nav_user .people {
+     /*width:60px;*/
+ }
+
+ .user-box .nav_user .people img {
+     display: block;
+     /*margin:14px auto;*/
+     width: 20px;
+     height: 20px;
+     /*border-radius:15px;*/
+     border-radius: 50%;
+     position: relative;
+     top: 4px;
+ }
+
+ .user-box .nav_user .user {
+     /*width:80px;*/
+     text-align: center;
+     /*font-size:14px;*/
+     /*color:#fff;*/
+     cursor: pointer;
+ }
+
+ .user-box .nav_user .user span {
+     padding: 0 10px;
+     margin-right: 10px;
+     border-right: 1px solid black;
+ }
+
+ .user-box .nav_user .user img {
+     width: 25px;
+     vertical-align: middle;
+ }
+
+ .user-box .nav_user .msg-count {
+     color: #306ee9;
+ }
+
+ .user-box .pop {
+     width: 90px;
+     position: absolute;
+     background: #fff;
+     top: 55px;
+     line-height: 32px;
+     z-index: 101;
+     font-size: 12px;
+     color: #32333c;
+     text-indent: 15px;
+     border: 1px solid #eee;
+ }
+
+ .user-box .pop ul li {
+     z-index: 102;
+     position: relative;
+     cursor: pointer;
+ }
+
+ .user-box .pop ul li:hover {
+     background: #3b83ee;
+     color: #fff;
+ }
+
+ .user-box .pop ul li span {
+     position: absolute;
+     width: 16px;
+     font-size: 12px;
+     height: 16px;
+     line-height: 16px;
+     text-indent: 0;
+     text-align: center;
+     border-radius: 8px;
+     font-size: #000;
+     background: #ffd101;
+     top: 8px;
+     right: 8px;
+ }
+
+ .user-box .pop .up_arrow {
+     width: 15px;
+     height: 15px;
+     z-index: 100;
+     top: 0;
+     left: 0;
+     position: absolute;
+     background: #fff;
+     -webkit-transform: translate(37.5px, -7.5px) rotate(45deg);
+     -ms-transform: translate(37.5px, -7.5px) rotate(45deg);
+     transform: translate(37.5px, -7.5px) rotate(45deg);
+ }
+
+ .user-box .pop.pop_alert {
+     z-index: 102;
+     height: 96px;
+     right: 25px;
+     top: 38px;
+     line-height: 32px;
+     position: absolute;
+ }

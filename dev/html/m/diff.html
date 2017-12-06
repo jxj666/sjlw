@@ -1,0 +1,106 @@
+<div class="pop_diff hide">
+    <div class="pop_box">
+        <div id="settings">
+            <div class="show_toggle">单屏显示</div>
+            <div class="hide_diff"></div>
+            <label class="hide">
+                <input type="radio" name="diff_type" value="diffChars" class="class_hign "> 高精度(字对比)</label>
+            <div class="head">
+                <h1>文件对比系统</h1>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="explain_s">
+            <div class="explain explain1">
+                版本1
+            </div>
+            <div class="explain explain2">
+                版本2
+            </div>
+            <div class="explain explain3">
+                合并对比
+            </div>
+        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <td contenteditable="false" id="a">1</td>
+                    <td class="interval"></td>
+                    <td contenteditable="false" id="b">2</td>
+                    <td class="interval"></td>
+                    <td><pre id="result"></pre></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="box_e">
+            <div class="color_e color_e1">
+                <span>新增</span>
+                <div class="line line_blue"></div>
+            </div>
+            <div class="color_e color_e2">
+                <span>删除</span>
+                <div class="line line_red"></div>
+            </div>
+        </div>
+        <script>
+        var a = document.getElementById('a');
+        var b = document.getElementById('b');
+        var result = document.getElementById('result');
+
+        function changed() {
+            var diff = JsDiff[window.diffType](a.textContent, b.textContent);
+            var fragment = document.createDocumentFragment();
+            for (var i = 0; i < diff.length; i++) {
+
+                if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
+                    var swap = diff[i];
+                    diff[i] = diff[i + 1];
+                    diff[i + 1] = swap;
+                }
+
+                var node;
+                if (diff[i].removed) {
+                    node = document.createElement('del');
+                    node.appendChild(document.createTextNode(diff[i].value));
+                } else if (diff[i].added) {
+                    node = document.createElement('ins');
+                    node.appendChild(document.createTextNode(diff[i].value));
+                } else {
+                    node = document.createTextNode(diff[i].value);
+                }
+                fragment.appendChild(node);
+            }
+
+            result.textContent = '';
+            result.appendChild(fragment);
+        }
+
+        window.onload = function() {
+            onDiffTypeChange(document.querySelector('#settings [name="diff_type"]:checked'));
+            changed();
+        };
+
+        a.onpaste = a.onchange =
+            b.onpaste = b.onchange = changed;
+
+        if ('oninput' in a) {
+            a.oninput = b.oninput = changed;
+        } else {
+            a.onkeyup = b.onkeyup = changed;
+        }
+
+        function onDiffTypeChange(radio) {
+            window.diffType = 'diffChars';
+        }
+
+        var radio = document.getElementsByName('diff_type');
+        for (var i = 0; i < radio.length; i++) {
+            radio[i].onchange = function(e) {
+                onDiffTypeChange(e.target);
+                changed();
+            }
+        }
+        </script>
+        <div id="cli_dialog_div"></div>
+    </div>
+</div>
