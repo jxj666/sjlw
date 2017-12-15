@@ -164,6 +164,20 @@ $gray8: #878998;
                 position: relative;
                 height: 250px;
                 overflow: auto;
+                .channel_h{
+                    text-align: right;
+                }
+            }
+        }
+        .type8 {
+            .right {
+                padding-right: 20px;
+                box-sizing: border-box;
+                .money_l {
+                    .list_l {
+                        padding-right: 10px;
+                    }
+                }
             }
         }
         .type3,
@@ -353,7 +367,7 @@ $gray8: #878998;
         position: absolute;
         top: 10%;
         left: 50%;
-        height: 600px;
+        max-height: 600px;
         margin-left: -300px;
         width: 600px;
     }

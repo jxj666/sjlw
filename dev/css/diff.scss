@@ -11,12 +11,15 @@
         background: #fff;
         overflow: auto;
         position: fixed;
-        top: 10px;
-        bottom: 10px;
+        /* top: 10px; */
+        /* bottom: 10px; */
+        top: 50%;
+        margin-top: -365px;
         left: 50%;
         width: 1200px;
         margin-left: -600px;
         z-index: 1000;
+        height: 725px;
         box-sizing: border-box;
         .explain_s {
             width: 100%;
@@ -42,6 +45,14 @@
             .explain3 {
                 left: 945px;
             }
+        }
+        .diff_table {
+            position: relative;
+            padding: 1px;
+            height: 600px;
+            padding-bottom: 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         .box_e {
             height: 55px;
@@ -119,7 +130,7 @@
             width: 20px;
             border-top: 1px solid #fff;
             border-bottom: 1px solid #fff;
-            padding:0;
+            padding: 0;
         }
         .line {
             height: 2px;
@@ -154,6 +165,7 @@
             overflow-x: hidden;
             box-sizing: border-box;
             min-height: 500px;
+            box-shadow: 0 0 5px #eee;
         }
         h1 {
             display: inline;

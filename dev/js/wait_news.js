@@ -19,7 +19,10 @@ var main = {
         //财经国家判断
         cjgjzk: 0,
         lwzk: 0,
+        lwzk_cjgjzk: 0,
         type: 0,
+        //已经录入的 channel
+        channel_save: [],
         //渠道
         channel: [],
         //财经国家渠道
@@ -198,7 +201,7 @@ var main = {
             if (list[i].news.reviewStatus == 0) {
                 html3 += '(退回)';
             }
-            html1 += '<tr class="' + (i % 2 == 0 ? 'bg_white' : 'bg_gray') + '" tr_id = \'' + list[i].news.id + '\'><td class="type1">                ' + list[i].news.id + '</td><td class="type2"><span>\u3010' + list[i].news.field + '\u3011</span><a href="javascript:void(0)">' + list[i].news.title + '</a></td><td class="type3">                ' + list[i].news.author + '</td><td class="type4">             ' + html5 + '</td><td class="type4">                ' + html2 + '</td><td class="type3">                ' + html3 + '</td><td class="type6">               ' + list[i].news.createTime + '</td><td class="type5"><a href="javascript:void(0)" class=\'t_daochu ' + (common.role.val5 ? '' : 'hide') + '\'>\u5BFC\u51FA</a><a href="javascript:void(0)" class=\'t_yulan\'>\u9884\u89c8</a> <a href="javascript:void(0)" class=\'t_chakan\'>\u67e5\u770b</a> <a href="javascript:void(0)" class=\'t_bidui\'>\u6BD4\u5BF9</a></td><td class="type5"><a href="javascript:void(0)" class=\'t_biangen ' + (common.role.val7 ? '' : 'hide') + '\'>\u53D8\u66F4</a></td></tr>';
+            html1 += '<tr class="' + (i % 2 == 0 ? 'bg_white' : 'bg_gray') + '" tr_id = \'' + list[i].news.id + '\' tr_channel = \'' + JSON.stringify(list[i].newsChannel) + '\'><td class="type1">                ' + list[i].news.id + '</td><td class="type2"><span>\u3010' + list[i].news.field + '\u3011</span><a href="javascript:void(0)">' + list[i].news.title + '</a></td><td class="type3">                ' + list[i].news.author + '</td><td class="type4">             ' + html5 + '</td><td class="type4">                ' + html2 + '</td><td class="type3">                ' + html3 + '</td><td class="type6">               ' + list[i].news.createTime + '</td><td class="type5"><a href="javascript:void(0)" class=\'t_daochu ' + (common.role.val5 ? '' : 'hide') + '\'>\u5BFC\u51FA</a><a href="javascript:void(0)" class=\'t_yulan\'>\u9884\u89c8</a> <a href="javascript:void(0)" class=\'t_chakan\'>\u67e5\u770b</a> <a href="javascript:void(0)" class=\'t_bidui\'>\u6BD4\u5BF9</a></td><td class="type5"><a href="javascript:void(0)" class=\'t_biangen ' + (common.role.val7 ? '' : 'hide') + '\'>\u53D8\u66F4</a></td></tr>';
         }
         $('.tableno tbody').html(html1);
     },
@@ -276,7 +279,7 @@ var main = {
             if (list[i].news.reviewStatus == 0) {
                 html3 += '(退回)';
             }
-            html1 += '<tr class="' + (i % 2 == 0 ? 'bg_white' : 'bg_gray') + '" tr_status=\'1\' tr_id=\'' + list[i].news.id + '\' ><td class="type1">                ' + list[i].news.id + '</td><td class="type2"><span>\u3010' + list[i].news.field + '\u3011</span><a href="javascript:void(0)">' + list[i].news.title + '</a></td><td class="type3">            ' + list[i].news.author + '</td><td class="type4">              ' + html5 + '</td><td class="type4">            ' + html2 + '</td><td class="type4">                 ' + html4 + '</td><td class="type3">                ' + html3 + '</td><td class="type1">                ' + list[i].news.totalRead + '</td><td class="type6">                ' + list[i].news.createTime + '</td><td class="type5"><a href="javascript:void(0)" class=\'t_yulan\'>\u9884\u89c8</a> <a href="javascript:void(0)" class=\'t_chakan\'>\u67e5\u770b</a> <a href="javascript:void(0)" class=\'t_daochu ' + (common.role.val5 ? '' : 'hide') + '\'>\u5BFC\u51FA</a><a href="javascript:void(0)" class=\'t_bidui\'>\u6BD4\u5BF9</a></td><td class="type1">                ' + (list[i].news.periodical || '未记录') + '</td><td class="type5" test=\'1\'><a href="javascript:void(0)" class=\'t_biangen ' + (common.role.val7 ? '' : 'hide') + '\'>\u53D8\u66F4</a></td></tr>';
+            html1 += '<tr class="' + (i % 2 == 0 ? 'bg_white' : 'bg_gray') + '" tr_status=\'1\' tr_id=\'' + list[i].news.id + '\'  tr_channel = \'' + JSON.stringify(list[i].newsChannel) + '\'><td class="type1">                ' + list[i].news.id + '</td><td class="type2"><span>\u3010' + list[i].news.field + '\u3011</span><a href="javascript:void(0)">' + list[i].news.title + '</a></td><td class="type3">            ' + list[i].news.author + '</td><td class="type4">              ' + html5 + '</td><td class="type4">            ' + html2 + '</td><td class="type4">                 ' + html4 + '</td><td class="type3">                ' + html3 + '</td><td class="type1">                ' + list[i].news.totalRead + '</td><td class="type6">                ' + list[i].news.createTime + '</td><td class="type5"><a href="javascript:void(0)" class=\'t_yulan\'>\u9884\u89c8</a> <a href="javascript:void(0)" class=\'t_chakan\'>\u67e5\u770b</a> <a href="javascript:void(0)" class=\'t_daochu ' + (common.role.val5 ? '' : 'hide') + '\'>\u5BFC\u51FA</a><a href="javascript:void(0)" class=\'t_bidui\'>\u6BD4\u5BF9</a></td><td class="type1">                ' + (list[i].news.periodical || '未记录') + '</td><td class="type5" test=\'1\'><a href="javascript:void(0)" class=\'t_biangen ' + (common.role.val7 ? '' : 'hide') + '\'>\u53D8\u66F4</a></td></tr>';
         }
         $('.tableyes tbody').html(html1);
     },
@@ -295,9 +298,12 @@ var main = {
         var key = main.data.channel_key;
         var $tr = $this.closest('tr');
         var news_id = $tr.attr('tr_id');
+        var channel_save = $tr.attr('tr_channel');
         main.data.news_id = news_id;
         main.data.ajax5.did = key;
         main.data.channel = [];
+        main.data.channel_save = JSON.parse(channel_save);
+        //console.log(main.data.channel_save);
         ajax_news.getChannel(main.data.ajax5, main.data_channel);
         main.data.ajax6.uid = common.k;
         main.data.ajax6.newsId = news_id;
@@ -334,12 +340,12 @@ var main = {
             case 'CJGJZK':
                 main.data.type = 1;
                 main.data.cjgjzk = 1;
-                main.pop_CJGJ();
+                main.pop_CJGJ_LWZK();
                 break;
             case 'LWZK':
                 main.data.type = 1;
                 main.data.lwzk = 1;
-                main.pop_CJGJ();
+                main.pop_CJGJ_LWZK();
                 break;
             case 'DFZK':
                 main.data.type = 2;
@@ -363,32 +369,6 @@ var main = {
         }
         $('body>.pop').removeClass('hide');
     },
-    //仅获取渠道信息
-    data_channel2: function data_channel2(res) {
-        // if (main.data.channel_select == 1) {
-        //     main.data.channel_1 = res.context;
-        // } else {
-        //     main.data.channel_2 = res.context;
-        // }
-        // var key = main.data.channel_key;
-        main.data.channel = main.data.channel.concat(res.context);
-        main.add_channel();
-        if (main.data.cjgjzk == 1) {
-            $('.channel .channel_i option').each(function() {
-                if (this.value <= 4) {
-                    $(this).hide();
-                }
-            });
-            $('.pop .check1').addClass('act');
-        } else {
-            $('.channel .channel_i option').each(function() {
-                if (this.value >= 5) {
-                    $(this).hide();
-                }
-            });
-            $('.pop .check2').addClass('act');
-        }
-    },
 
 
 
@@ -397,9 +377,11 @@ var main = {
 
 
 
-    //财经国家
+
+    //财经国家/瞭望智库
     //财经国家数据
     data_CJGJ: function data_CJGJ() {
+
         main.data_common();
     },
     //有渠道通用数据
@@ -426,7 +408,7 @@ var main = {
     },
 
     // 财经国家弹框
-    pop_CJGJ: function pop_CJGJ() {
+    pop_CJGJ_LWZK: function pop_CJGJ_LWZK() {
         $('.pop_base .change2').show();
         $('.pop_base .change3').show();
         main.data.section = 1;
@@ -452,8 +434,24 @@ var main = {
     data_YB: function data_YB() {
         main.data.ajax3.id = parseInt(main.data.news_id);
         main.data.ajax3.status = $('.change1 .status_i').val();
-        main.data.ajax3.hasChannel = 0;
-        main.data.ajax3.price = $('.change4 .unit2_i input').val();
+        main.data.ajax3.hasChannel = 1;
+        var obj = {};
+        obj.channelId =parseInt($('.change4 .channel_i select').val()) ;
+        obj.newsType = parseInt($('.change4 .unit2_i input').attr('newsType'));
+        obj.priceType =parseInt($('.change4 .unit2_i input').attr('priceType')) ;
+        obj.price = $('.change4 .unit2_i input').val();
+        obj.factor = "1";
+        obj.sourceId = $('.change4 .unit2_i input').attr('sourceId');
+        obj.position = $('.change4 .unit2_i input').attr('position');
+
+
+        var arr1 = [];
+        arr1.push(obj);
+        main.data.ajax3.channel = JSON.stringify(arr1);
+        main.data.ajax3.sourceId = $('.change4 .unit2_i input').attr('sourceId');
+        main.data.ajax3.priceType = $('.change4 .unit2_i input').attr('priceType');
+        main.data.ajax3.position = $('.change4 .unit2_i input').attr('position');
+        main.data.ajax3.newsType = $('.change4 .unit2_i input').attr('newsType');
         main.data.ajax3.factor = 1;
         //console.log(main.data.ajax3);
     },
@@ -462,12 +460,20 @@ var main = {
         $('.pop_base .change4').show();
         $('.pop_base .change4 .class2_i').addClass('v_hide');
         main.data.section = 2;
-        var html1 = '<option value="">\u8BF7\u9009\u62E9</option>';
+
+        var html1 = '';
         var arr1 = money_data.yb;
         for (var i = 0; i < arr1.length; i++) {
-            html1 += '<option value="' + i + '">' + arr1[i].name + '</option>';
+            html1 += '<option value="' + arr1[i].type + '">' + arr1[i].name + '</option>';
+        }
+        var html2 = '';
+        var arr2 = main.data.channel;
+        for (var i = 0; i < arr2.length; i++) {
+            html2 += '<option value="' + arr2[i].id + '">' + arr2[i].name + '</option>';
         }
         $('.change4 .type_i select').html(html1);
+        $('.change4 .channel_i select').html(html2);
+        main.select_type($('.change4 .type_i select'));
     },
 
 
@@ -549,10 +555,49 @@ var main = {
 
 
 
+    //仅获取渠道信息
+    data_channel2: function data_channel2(res) {
+        // if (main.data.channel_select == 1) {
+        //     main.data.channel_1 = res.context;
+        // } else {
+        //     main.data.channel_2 = res.context;
+        // }
+        // var key = main.data.channel_key;
+        main.data.channel = main.data.channel.concat(res.context);
+        if (main.data.channel_save.length > 0) {
+            main.data.cjgjzk = 1;
+            main.data.lwzk = 1;
+            var channel_save = main.data.channel_save;
+            for (var i = 0; i < channel_save.length; i++) {
+                main.add_channel(channel_save[i]);
+            }
+        } else {
+            main.add_channel();
+            $('.channel .channel_i option').each(function() {
+                $(this).hide();
+            });
+        }
+        if (main.data.cjgjzk == 1) {
+            $('.channel .channel_i option').each(function() {
+                if (this.value >= 5) {
+                    $(this).show();
+                }
+            });
+            $('.pop .check1').addClass('act');
+        }
+        if (main.data.lwzk == 1) {
+            $('.channel .channel_i option').each(function() {
+                if (this.value <= 4) {
+                    $(this).show();
+                }
+            });
+            $('.pop .check2').addClass('act');
+        }
 
+    },
     //增加渠道
-    add_channel: function add_channel() {
-        var html1 = '<option value="0">请选择</option>';
+    add_channel: function add_channel(channel_save) {
+        var html1 = '';
         var arr1 = main.data.channel;
 
         for (var i = 0; i < arr1.length; i++) {
@@ -561,22 +606,34 @@ var main = {
             }
             html1 += '<option value=\'' + arr1[i].id + '\'>' + arr1[i].name + '</option>';
         }
-        var html2 = '                <div class="channel">\n                    <div class="channel_h">\u6E20\u9053 ' + main.data.channel_num++ + '<span class="close">\xD7</span></div>\n                    <div class="channel_b">\n                        <div class="channel_l channel_i">\n                            <div class="list_l">\u6E20\u9053\u9009\u62E9 : </div>\n                            <div class="list_r">\n                                <select>\n                                    ' + html1 + '\n                                </select>\n                            </div>\n                        </div>\n                        <div class="channel_l money_i">\n                            <div class="list_l">\u7A3F\u8D39\u7EC6\u5206 : </div>\n                            <div class="list_r">\n                                <select>\n                                    <option></option>\n                                </select>\n                            </div>\n                        </div>\n                        <div class="channel_l measure_i">\n                            <div class="list_l">\u5355\u4F4D\u7A3F\u8D39 : </div>\n                            <div class="list_r">\n                                <select >\n                                    <option></option>\n                                </select>\n                            </div>\n                        </div>\n                        <div class="channel_l measure2_i v_hide">\n                            <div class="placeholder">\u5355\u4F4D</div><input type="" name="">\n                        </div>\n                        <div class="channel_l page_i hide">\n                            <div class="list_l">\u7248\u9762/\u6761 : </div>\n                            <div class="list_r">\n                                <div class="placeholder" style="right: 10%;">\u7248\u6216\u6761</div><input type="" name="" >\n                            </div>\n                        </div>\n                        <div class="channel_l num_i hide">\n                            <div class="list_l">\u671F\u520A\u53F7 : </div>\n                            <div class="list_r">\n                                <div class="placeholder" style="right: 10%;">\u671F</div><input type="" name="">\n                            </div>\n                        </div>\n                        <div class="clear"></div>\n                    </div>\n                </div>';
+        var html2 = '                <div class="channel" ' + "channel_data='" + JSON.stringify(channel_save) + "'" + '>\n                    <div class="channel_h">\u6E20\u9053 ' + main.data.channel_num++ + '<span class="close">\xD7</span></div>\n                    <div class="channel_b">\n                        <div class="channel_l channel_i">\n                            <div class="list_l">\u6E20\u9053\u9009\u62E9 : </div>\n                            <div class="list_r">\n                                <select>\n                                    ' + html1 + '\n                                </select>\n                            </div>\n                        </div>\n                        <div class="channel_l money_i">\n                            <div class="list_l">\u7A3F\u8D39\u7EC6\u5206 : </div>\n                            <div class="list_r">\n                                <select>\n                                    <option></option>\n                                </select>\n                            </div>\n                        </div>\n                        <div class="channel_l measure_i">\n                            <div class="list_l">\u5355\u4F4D\u7A3F\u8D39 : </div>\n                            <div class="list_r">\n                                <select >\n                                    <option></option>\n                                </select>\n                            </div>\n                        </div>\n                        <div class="channel_l measure2_i v_hide">\n                            <div class="placeholder">\u5355\u4F4D</div><input type="" name="">\n                        </div>\n                        <div class="channel_l page_i hide">\n                            <div class="list_l">\u7248\u9762/\u6761 : </div>\n                            <div class="list_r">\n                                <div class="placeholder" style="right: 10%;">\u7248\u6216\u6761</div><input type="" name="" >\n                            </div>\n                        </div>\n                        <div class="channel_l num_i hide">\n                            <div class="list_l">\u671F\u520A\u53F7 : </div>\n                            <div class="list_r">\n                                <div class="placeholder" style="right: 10%;">\u671F</div><input type="" name="">\n                            </div>\n                        </div>\n                        <div class="clear"></div>\n                    </div>\n                </div>';
         $('.change3 .checks').before(html2);
-        if (main.data.cjgjzk == 1) {
-            $('.channel .channel_i option').each(function() {
-                if (this.value < 5) {
-                    $(this).hide();
-                }
-            });
-        } else if (main.data.lwzk == 1) {
-            $('.channel .channel_i option').each(function() {
-                if (this.value >= 5) {
-                    $(this).hide();
-                }
-            });
+
+        if (main.data.section == 1) {
+            if (main.data.cjgjzk == 0) {
+                $('.channel .channel_i option').each(function() {
+                    if (this.value >= 5) {
+                        $(this).hide();
+                    }
+                });
+            } else if (main.data.lwzk == 0) {
+                $('.channel .channel_i option').each(function() {
+                    if (this.value < 5) {
+                        $(this).hide();
+                    }
+                });
+            } else {}
+        }
+        var $channel = $('.change3 .checks').prev();
+        var $select = $channel.find('.channel_i select');
+
+        if (channel_save) {
+            //console.log(data);
+            var data = JSON.parse($channel.attr('channel_data'));
+            $select.val(data.channelId);
+            main.select_channel_record($select);
         } else {
-            return;
+            main.select_channel($select);
         }
     },
     //减少渠道
@@ -605,14 +662,18 @@ var main = {
         $channel.find('.num_i').addClass('hide');
         $channel.find('.measure2_i input').attr('key1', val);
         main.data.$channel = $channel;
+
+
         //期刊
         if (val == 5 || val == 11) {
             $channel.find('.num_i').removeClass('hide');
+
         }
         //版面与期刊
         if (val == 8) {
             $channel.find('.page_i').removeClass('hide');
             $channel.find('.num_i').removeClass('hide');
+
         }
         //条
         if (val == 9 || val == 10) {
@@ -623,9 +684,48 @@ var main = {
         main.data.ajax4.channelId = val;
         ajax_news.getSubdivide(main.data.ajax4, main.select_money);
     },
+    //记录渠道渲染
+    select_channel_record: function select_channel_record($this) {
+        var val = $this.val();
+        var $channel = $this.closest('.channel');
+        $channel.find('.page_i').addClass('hide');
+        $channel.find('.num_i').addClass('hide');
+        $channel.find('.measure2_i input').attr('key1', val);
+        main.data.$channel = $channel;
+        var num = '';
+        var page = '';
+        var json = main.data.$channel.attr('channel_data');
+        //console.log(json);
+        if (json && json != 'undefined') {
+            var json2 = JSON.parse(json).ext;
+            var obj2 = JSON.parse(json2);
+            num = obj2.periodical;
+            page = obj2.quantity;
+            //console.log(num,page)
+        }
+        //console.log(val);
+        //期刊
+        if (val == 5 || val == 11) {
+            $channel.find('.num_i').removeClass('hide');
+            $channel.find('.num_i input').val(num);
+        }
+        //版面与期刊
+        if (val == 8) {
+            $channel.find('.page_i').removeClass('hide');
+            $channel.find('.num_i').removeClass('hide');
+            $channel.find('.page_i input').val(page);
+            $channel.find('.num_i input').val(num);
+        }
+        //条
+        if (val == 9 || val == 10) {
+            $channel.find('.page_i').removeClass('hide');
+            $channel.find('.page_i input').val(page);
 
-
-
+        }
+        $channel.find('.money_i select').html('<option value="0">待加载</option>');
+        $channel.find('.measure_i select').html('<option value="0">待加载</option>');
+        main.select_money_recold(val);
+    },
 
 
 
@@ -645,7 +745,44 @@ var main = {
             html1 += '<option value=\'' + k.id + '\'>' + k.name + '</option>';
         }
         main.data.$channel.find('.money_i select').html(html1);
+        var $select = main.data.$channel.find('.money_i select');
+        main.select_to_money($select);
     },
+    //记录稿费细分
+    select_money_recold: function select_money_recold(val) {
+
+        var obj = money_data.channel_more[val];
+        var html1 = '';
+        // for (var i = 0; i < list.length; i++) {
+        //     var k = list[i].dictSubdivide;
+        //     html1 += '<option value=\'' + k.id + '\'>' + k.name + '</option>';
+        // }
+        $.each(obj, function(i, n) {
+            if (parseInt(i) > 0) {
+                html1 += '<option value=\'' + i + '\'>' + n.split(',')[0] + '</option>';
+            }
+        });
+        main.data.$channel.find('.money_i select').html(html1);
+        var json = main.data.$channel.attr('channel_data');
+        var json2 = JSON.parse(json).ext;
+        var obj2 = JSON.parse(json2);
+        var val = obj2.newsType;
+        var $select = main.data.$channel.find('.money_i select');
+        $select.val(val);
+        main.select_to_money($select);
+    },
+
+
+
+
+
+
+
+
+
+
+
+
     //展示 select
     select_show: function select_show(arr) {
         var html1 = '';
@@ -947,29 +1084,48 @@ var main = {
         var key2 = $this.val();
         $channel.find('.measure_i select').html('<option value="0">待加载</option>');
         //console.log(key1, key2);
-        if (main.data.type == 1) {
-            main.show_money(money_data.cjgjzk_lwzk[key1][key2], $channel, money_data.cjgjzk_lwzk[key1]);
-        } else if (main.data.type == 2) {
-            main.show_money(money_data.dfzk[key1][key2], $channel, money_data.dfzk[key1]);
-        } else if (main.data.type == 3) {
-            main.show_money(money_data.hqzz[key1][key2], $channel, money_data.hqzz[key1]);
-        } else {}
+        // if (main.data.type == 1) {
+        //     main.show_money(money_data.cjgjzk_lwzk[key1][key2], $channel, money_data.cjgjzk_lwzk[key1]);
+        // } else if (main.data.type == 2) {
+        //     main.show_money(money_data.dfzk[key1][key2], $channel, money_data.dfzk[key1]);
+        // } else if (main.data.type == 3) {
+        //     main.show_money(money_data.hqzz[key1][key2], $channel, money_data.hqzz[key1]);
+        // } else {}
+        main.show_money(money_data.channel_more[key1][key2], $channel, money_data.channel_more[key1]);
     },
+
     //显示稿费
     show_money: function show_money(money, $channel, type) {
         if (money) {
             var html1 = '';
-            html1 += '<option value="' + money.split("元")[0] + '" >' + money + '</option>';
+            html1 += '<option value="' + money.split(",")[1].split("元")[0] + '" >' + money.split(",")[1] + '</option>';
             html1 += '<option value="' + type.priceType + '">\u624B\u52A8\u8F93\u5165</option>';
             $channel.find('.measure_i select').html(html1);
-            $channel.find('.measure2_i input').val(money.split("元")[0]);
+            $channel.find('.measure2_i input').val(money.split(",")[1].split("元")[0]);
             $channel.find('.measure2_i input').attr('key3', type.priceType);
+
             if (main.data.section == 4) {
-                $channel.find('.measure2_i input').attr('key4', money.split("元")[2]);
+                $channel.find('.measure2_i input').attr('key4', money.split(",")[2]);
             }
+
+            var json = $channel.attr('channel_data');
+
+            if (json && json != 'undefined') {
+                var json2 = JSON.parse(json).ext;
+                var obj2 = JSON.parse(json2);
+                if (obj2.price == money.split(",")[1].split("元")[0]) {
+                    //console.log('金额自动!')
+                } else {
+                    //console.log('金额手动!')
+                    $channel.find('.measure_i select').val(type.priceType);
+                    main.select_measure($channel.find('.measure_i select'), obj2.price);
+                }
+            }
+
         } else {
             alert('金额参数缺失!,请仔细核对,防止结算错误!');
         }
+
     },
 
 
@@ -981,17 +1137,17 @@ var main = {
 
 
     //选择金额
-    select_measure: function select_measure($this) {
+    select_measure: function select_measure($this, prize) {
         var $channel = $this.closest('.channel');
         $channel.find('.measure2_i').addClass('v_hide');
         var key1 = $this.val();
         var key2 = '';
         //console.log($channel.find('.measure2_i input').attr('key1'), $channel.find('.measure2_i input').attr('key2'), $channel.find('.measure2_i input').attr('key3'));
         if (key1 == 'no') {
-            $channel.find('.measure2_i input').val(0);
+            $channel.find('.measure2_i input').val(prize ? prize : 0);
         } else if (key1 < 5) {
             $channel.find('.measure2_i').removeClass('v_hide');
-            $channel.find('.measure2_i input').val(0);
+            $channel.find('.measure2_i input').val(prize ? prize : 0);
             key1 == 1 ? key2 = '元/千字' : key1 == 2 ? key2 = '元/版面' : key1 == 3 ? key2 = '元/篇' : key1 == 4 ? key2 = '元/条' : key2 = '未定义单位!';
             $channel.find('.measure2_i .placeholder ').text(key2);
         } else {
@@ -1004,46 +1160,53 @@ var main = {
 
 
 
-    //选择稿件类型
+    //选择稿件类型(研报)
     select_type: function select_type($this) {
         var key1 = $this.val();
         if (main.data.section == 2) {
-
             main.data.arrary_1 = money_data.yb;
             main.data.arrary_2 = money_data.yb[key1].data;
-            main.data.ajax3.sourceId = main.data.arrary_1[key1].type;
+            // main.data.ajax3.sourceId = main.data.arrary_1[key1].type;
             var arr1 = money_data.yb[key1].data;
             var html1 = main.select_show(arr1);
             $('.change4 .job_i select').html(html1);
+            $('.change4 .unit2_i input').attr('sourceId', main.data.arrary_1[key1].type);
+            main.select_job($('.change4 .job_i select'));
         } else {}
     },
 
 
 
 
-    //选择职位
+    //选择职位(研报)
     select_job: function select_job($this) {
         var key1 = $this.val();
         if (main.data.section == 2) {
-            main.data.ajax3.priceType = main.data.arrary_2[key1].priceType;
-            main.data.ajax3.position = main.data.arrary_2[key1].name;
+            // main.data.ajax3.priceType = main.data.arrary_2[key1].priceType;
+            // main.data.ajax3.position = main.data.arrary_2[key1].name;
+            $('.change4 .unit2_i input').attr('priceType', main.data.arrary_2[key1].priceType);
+            $('.change4 .unit2_i input').attr('position', main.data.arrary_2[key1].name);
             main.data.arrary_3 = main.data.arrary_2[key1].data;
             var arr1 = main.data.arrary_2[key1].data;
             var html1 = main.select_show(arr1);
             $('.change4 .class_i select').html(html1);
+            main.select_class($('.change4 .class_i select'));
         } else {}
     },
 
 
 
-    // 选择细分
+    // 选择细分(研报)
     select_class: function select_class($this) {
         var key1 = $this.val();
         if (main.data.section == 2) {
-            main.data.ajax3.newsType = main.data.arrary_3[key1].type;
+            // main.data.ajax3.newsType = main.data.arrary_3[key1].type;
             var obj1 = main.data.arrary_3[key1];
             var html1 = main.select_show2(obj1);
             $('.change4 .unit_i select').html(html1);
+
+            $('.change4 .unit2_i input').attr('newsType', main.data.arrary_3[key1].type);
+            main.select_unit($('.change4 .unit_i select'));
             $('.change4 .unit_i .placeholder').text(main.data.string_1);
         } else {}
     },
@@ -1052,7 +1215,7 @@ var main = {
 
 
 
-    //选择计价
+    //选择计价(研报 周刊社)
     select_unit: function select_unit($this) {
         var key1 = $this.val();
         $('.change4 .unit2_i').addClass('v_hide');
@@ -1086,7 +1249,7 @@ var main = {
 
 
 
-    // 选择版面奖
+    // 选择版面奖(周刊社)
     select_page: function select_page($this) {
         var key1 = $this.val();
         $('.change5 .page2_i').addClass('v_hide');
@@ -1107,7 +1270,7 @@ var main = {
 
 
 
-    // 选择栏目
+    // 选择栏目(周刊社)
     select_column: function select_column($this) {
         var key1 = $this.val();
         if (main.data.section == 5) {
@@ -1122,7 +1285,7 @@ var main = {
 
 
 
-    //选择人员类型
+    //选择人员类型(周刊社)
     select_person: function select_person($this) {
         var key1 = $this.val();
         if (main.data.section == 5) {
@@ -1196,6 +1359,7 @@ main.start();
 $('table').on('click', '.t_biangen', function() {
     main.click_change($(this));
 });
+
 $('.pop .bg_blue').on('click', function() {
     main.click_submit();
 });
@@ -1213,12 +1377,18 @@ $('#s_search').on('click', function() {
 $('.switch_wait2').on('click', 'li', function() {
     main.switch_type($(this));
 });
+
+
+
+
 $('.pop').on('click', '.change3 .add_channel', function() {
     main.add_channel();
 });
 $('.pop').on('click', '.change3 .close', function() {
     main.close_channel($(this));
 });
+
+//多渠道
 $('.pop').on('change', '.change3 .channel_i select', function() {
     main.select_channel($(this));
 });
@@ -1228,6 +1398,8 @@ $('.pop').on('change', '.change3 .money_i select', function() {
 $('.pop').on('change', '.change3 .measure_i select', function() {
     main.select_measure($(this));
 });
+
+//研报
 $('.pop').on('change', '.change4 .type_i select', function() {
     main.select_type($(this));
 });
@@ -1240,6 +1412,9 @@ $('.pop').on('change', '.change4 .class_i select', function() {
 $('.pop').on('change', '.change4 .unit_i select', function() {
     main.select_unit($(this));
 });
+
+
+
 $('.pop').on('change', '.change5 .unit_i select', function() {
     main.select_unit($(this));
 });
