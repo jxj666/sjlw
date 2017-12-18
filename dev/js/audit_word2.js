@@ -10,7 +10,7 @@ var main = {
         ajax1: {
             name: 'getReviewNews',
             context: undefined,
-            author: undefined,
+            publishUid: undefined,
             field: undefined,
             stage: undefined,
             type: undefined,
@@ -285,7 +285,7 @@ var main = {
             main.data.table = 1;
             main.data.ajax1 = {
                 context: undefined,
-                author: undefined,
+                publishUid: undefined,
                 field: undefined,
                 stage: 0,
                 isAsign: undefined,
@@ -306,7 +306,7 @@ var main = {
             main.data.table = 2;
             main.data.ajax1 = {
                 context: undefined,
-                author: undefined,
+                publishUid: undefined,
                 field: undefined,
                 stage: 1,
                 isAsign: undefined,
@@ -325,7 +325,7 @@ var main = {
             main.data.isAsign = 0;
             main.data.ajax1 = {
                 context: undefined,
-                author: undefined,
+                publishUid: undefined,
                 field: undefined,
                 stage: 2,
                 isAsign: 0,
@@ -343,7 +343,7 @@ var main = {
             main.data.isAsign = 0;
             main.data.ajax1 = {
                 context: undefined,
-                author: undefined,
+                publishUid: undefined,
                 field: undefined,
                 stage: 3,
                 isAsign: 0,
@@ -361,7 +361,7 @@ var main = {
             main.data.isAsign = 0;
             main.data.ajax1 = {
                 context: undefined,
-                author: undefined,
+                publishUid: undefined,
                 field: undefined,
                 stage: undefined,
                 isAsign: 0,
@@ -379,7 +379,7 @@ var main = {
             main.data.isAsign = 0;
             main.data.ajax1 = {
                 context: undefined,
-                author: undefined,
+                publishUid: undefined,
                 field: undefined,
                 stage: undefined,
                 isAsign: 0,
@@ -447,7 +447,7 @@ var main = {
         k2 = k2 == '0' ? undefined : k2;
         k3 = k3 == '0' ? undefined : k3;
         main.data.ajax1.context = k1;
-        main.data.ajax1.author = k2;
+        main.data.ajax1.publishUid = k2;
         main.data.ajax1.field = k3;
         main.data.ajax1.start = 0;
         main.data.ajax1.size = 20;

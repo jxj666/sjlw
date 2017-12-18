@@ -26,8 +26,11 @@ var common = {
         },
         ajax4: {
             name: 'getAllAuthor'
+        },
+        ajax5:{
+            name:'getUsers',
+            roleId: 'CMS001'
         }
-
     },
     //获取储存
     getCookie: function(c_name) {
@@ -293,7 +296,7 @@ var common = {
     //作者展示
     author_show: function(data) {
         common.s_author = [];
-        var list3 = data.context || [];
+        var list3 = JSON.parse(data.context).rows || [];
 
         function show_l(list, data, e, key, name) {
 
@@ -307,9 +310,11 @@ var common = {
                 }
                 var html1 = '<option value="0">\u6240\u6709' + name + '</option>';
                 var html2 = '';
+                var html3='';
                 for (var i = 0, l = data; i < l.length; i++) {
                     html2 = l[i].name;
-                    html1 += '<option value="' + html2 + '">' + html2 + '</option>';
+                    html3 = l[i].id;
+                    html1 += '<option value="' + html3 + '">' + html2 + '</option>';
                 }
                 $(e).html(html1);
             }
@@ -322,7 +327,7 @@ var common = {
     },
     //获取列表
     getAllAuthor: function() {
-        ajax_news.getAllAuthor(undefined, common.author_show);
+        ajax_news.getUsers(common.data.ajax5, common.author_show);
     },
     //初试元素绑定
     bind_element: function() {
