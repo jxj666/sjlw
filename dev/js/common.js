@@ -6,7 +6,6 @@ var common = {
     i: 0,
     theRequest: {},
     k: '',
-
     data: {
         storeType: 1,
         ajax1: {
@@ -24,13 +23,14 @@ var common = {
             name: 'lockNews',
             newsId: undefined
         },
-        ajax4: {
+
+        ajax5: {
+            name: 'getUsers',
+            roleId: 'CMS001'
+        },
+        ajax6: {
             name: 'getAllAuthor'
         },
-        ajax5:{
-            name:'getUsers',
-            roleId: 'CMS001'
-        }
     },
     //获取储存
     getCookie: function(c_name) {
@@ -310,7 +310,7 @@ var common = {
                 }
                 var html1 = '<option value="0">\u6240\u6709' + name + '</option>';
                 var html2 = '';
-                var html3='';
+                var html3 = '';
                 for (var i = 0, l = data; i < l.length; i++) {
                     html2 = l[i].name;
                     html3 = l[i].id;
@@ -394,7 +394,7 @@ var common = {
     look_details: function($this) {
         var $tr = $this.closest('tr');
         var id = $tr.attr('tr_id');
-        location.href = '' + '/page/p/news/checkNewsDetail?id=' + id+'&storeType='+common.data.storeType;
+        location.href = '' + '/page/p/news/checkNewsDetail?id=' + id + '&storeType=' + common.data.storeType;
 
     },
     //查看文档显示
@@ -495,7 +495,7 @@ var common = {
         var $tr = $this.closest('tr');
         var id = $tr.attr('tr_id');
 
-        location.href = '' + '/page/p/news/editNews?id=' + id+'&storeType='+common.data.storeType;
+        location.href = '' + '/page/p/news/editNews?id=' + id + '&storeType=' + common.data.storeType;
     },
     //审核文档
     edit: function($this) {
@@ -504,7 +504,7 @@ var common = {
         common.data.ajax4.uid = common.k;
         common.data.ajax4.newsId = id;
         ajax_news.lockNews(common.data.ajax4, undefined);
-        location.href = '' + '/page/p/news/reviewNews?id=' + id+'&storeType='+common.data.storeType;
+        location.href = '' + '/page/p/news/reviewNews?id=' + id + '&storeType=' + common.data.storeType;
 
     },
     //终审文档
@@ -514,7 +514,7 @@ var common = {
         common.data.ajax4.uid = common.k;
         common.data.ajax4.newsId = id;
         ajax_news.lockNews(common.data.ajax4, undefined);
-        location.href = '' + '/page/p/news/toFinal?id=' + id+'&storeType='+common.data.storeType;
+        location.href = '' + '/page/p/news/toFinal?id=' + id + '&storeType=' + common.data.storeType;
 
     },
     //点击比对反应

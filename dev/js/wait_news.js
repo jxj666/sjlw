@@ -279,8 +279,9 @@ var main = {
             if (list[i].news.reviewStatus == 0) {
                 html3 += '(退回)';
             }
-            html1 += '<tr class="' + (i % 2 == 0 ? 'bg_white' : 'bg_gray') + '" tr_status=\'1\' tr_id=\'' + list[i].news.id + '\'  tr_channel = \'' + JSON.stringify(list[i].newsChannel) + '\'><td class="type1">                ' + list[i].news.id + '</td><td class="type2"><span>\u3010' + list[i].news.field + '\u3011</span><a href="javascript:void(0)">' + list[i].news.title + '</a></td><td class="type3">            ' + list[i].news.author + '</td><td class="type4">              ' + html5 + '</td><td class="type4">            ' + html2 + '</td><td class="type4">                 ' + html4 + '</td><td class="type3">                ' + html3 + '</td><td class="type1">                ' + list[i].news.totalRead + '</td><td class="type6">                ' + list[i].news.createTime + '</td><td class="type5"><a href="javascript:void(0)" class=\'t_yulan\'>\u9884\u89c8</a> <a href="javascript:void(0)" class=\'t_chakan\'>\u67e5\u770b</a> <a href="javascript:void(0)" class=\'t_daochu ' + (common.role.val5 ? '' : 'hide') + '\'>\u5BFC\u51FA</a><a href="javascript:void(0)" class=\'t_bidui\'>\u6BD4\u5BF9</a></td><td class="type1">                ' + (list[i].news.periodical || '未记录') + '</td><td class="type5" test=\'1\'><a href="javascript:void(0)" class=\'t_biangen ' + (common.role.val7 ? '' : 'hide') + '\'>\u53D8\u66F4</a></td></tr>';
+            html1 += '<tr class="' + (i % 2 == 0 ? 'bg_white' : 'bg_gray') + '" tr_status=\'1\' tr_id=\'' + list[i].news.id + '\'  tr_channel = \'' + JSON.stringify(list[i].newsChannel) + '\'><td class="type1">                ' + list[i].news.id + '</td><td class="type2"><span>\u3010' + list[i].news.field + '\u3011</span><a href="javascript:void(0)">' + list[i].news.title + '</a></td><td class="type3">            ' + list[i].news.author + '</td><td class="type4">              ' + html5 + '</td><td class="type4">            ' + html2 + '</td><td class="type4">                 ' + html4 + '</td><td class="type3">                ' + html3 + '</td> ' + '<td class="type6">                ' + list[i].news.createTime + '</td><td class="type5"><a href="javascript:void(0)" class=\'t_yulan\'>\u9884\u89c8</a> <a href="javascript:void(0)" class=\'t_chakan\'>\u67e5\u770b</a> <a href="javascript:void(0)" class=\'t_daochu ' + (common.role.val5 ? '' : 'hide') + '\'>\u5BFC\u51FA</a><a href="javascript:void(0)" class=\'t_bidui\'>\u6BD4\u5BF9</a></td>              '+ '<td class="type5" test=\'1\'><a href="javascript:void(0)" class=\'t_biangen ' + (common.role.val7 ? '' : 'hide') + '\'>\u53D8\u66F4</a></td></tr>';
         }
+         // + (list[i].news.periodical || '未记录') 
         $('.tableyes tbody').html(html1);
     },
 
@@ -381,7 +382,6 @@ var main = {
     //财经国家/瞭望智库
     //财经国家数据
     data_CJGJ: function data_CJGJ() {
-
         main.data_common();
     },
     //有渠道通用数据
@@ -436,9 +436,9 @@ var main = {
         main.data.ajax3.status = $('.change1 .status_i').val();
         main.data.ajax3.hasChannel = 1;
         var obj = {};
-        obj.channelId =parseInt($('.change4 .channel_i select').val()) ;
+        obj.channelId = parseInt($('.change4 .channel_i select').val());
         obj.newsType = parseInt($('.change4 .unit2_i input').attr('newsType'));
-        obj.priceType =parseInt($('.change4 .unit2_i input').attr('priceType')) ;
+        obj.priceType = parseInt($('.change4 .unit2_i input').attr('priceType'));
         obj.price = $('.change4 .unit2_i input').val();
         obj.factor = "1";
         obj.sourceId = $('.change4 .unit2_i input').attr('sourceId');
@@ -494,7 +494,15 @@ var main = {
         main.data.section = 3;
         $('.change3 .channel').remove();
         main.data.channel_num = 1;
-        main.add_channel();
+        // main.add_channel();
+        if (main.data.channel_save.length > 0) {
+            var channel_save = main.data.channel_save;
+            for (var i = 0; i < channel_save.length; i++) {
+                main.add_channel(channel_save[i]);
+            }
+        } else {
+            main.add_channel();
+        }
     },
 
 
@@ -511,7 +519,17 @@ var main = {
         main.data.section = 4;
         $('.change3 .channel').remove();
         main.data.channel_num = 1;
-        main.add_channel();
+        // main.add_channel();
+        if (main.data.channel_save.length > 0) {
+            main.data.cjgjzk = 1;
+            main.data.lwzk = 1;
+            var channel_save = main.data.channel_save;
+            for (var i = 0; i < channel_save.length; i++) {
+                main.add_channel(channel_save[i]);
+            }
+        } else {
+            main.add_channel();
+        }
     },
 
 
