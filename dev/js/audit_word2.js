@@ -402,7 +402,7 @@ var main = {
         if (main.data.table == 1) {
             v1 = 'CMS014';
         } else if (main.data.table == 2) {
-            v1 = 'CMS014,CMS015';
+            v1 = 'CMS015';
         } else if (main.data.table == 3) {
             //v1 = 'CMS016';
         } else {

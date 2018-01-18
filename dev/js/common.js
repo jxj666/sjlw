@@ -6,8 +6,11 @@ var common = {
     i: 0,
     theRequest: {},
     k: '',
+
     data: {
+        edit_type: 0,
         storeType: 1,
+        news_id: 0,
         ajax1: {
             name: 'getTrumpet'
         },
@@ -236,7 +239,8 @@ var common = {
         }).done(function(res) {
             common.console_data(res, port);
             if (res.code != '1') {
-                layer.msg(port + ' 返回数据出错!');
+                layer.msg(res.msg ? res.msg : port + ' 返回数据出错!');
+                // layer.msg(port + ' 返回数据出错!');
             } else {
                 callback && callback(res);
             }
@@ -490,31 +494,48 @@ var common = {
         `;
         $('.pop_look .content').html(html12);
     },
-    //审辑文档
+    //编辑文档
     change: function($this) {
         var $tr = $this.closest('tr');
         var id = $tr.attr('tr_id');
 
         location.href = '' + '/page/p/news/editNews?id=' + id + '&storeType=' + common.data.storeType;
     },
+    // 锁定校验
+    lock_examine: function(res) {
+        localStorage.lock_examine = JSON.stringify(res)
+        if (res.code == 1) {
+            if (common.data.edit_type == 0) {
+                location.href = '' + '/page/p/news/reviewNews?id=' + common.data.news_id + '&storeType=' + common.data.storeType;
+            } else {
+                location.href = '' + '/page/p/news/toFinal?id=' + common.data.news_id + '&storeType=' + common.data.storeType;
+            }
+        } else {
+            layer.msg(res.msg);
+        }
+    },
     //审核文档
     edit: function($this) {
         var $tr = $this.closest('tr');
         var id = $tr.attr('tr_id');
+        common.data.news_id = id;
         common.data.ajax4.uid = common.k;
         common.data.ajax4.newsId = id;
-        ajax_news.lockNews(common.data.ajax4, undefined);
-        location.href = '' + '/page/p/news/reviewNews?id=' + id + '&storeType=' + common.data.storeType;
+        common.data.edit_type = 0;
+        ajax_news.lockNews(common.data.ajax4, common.lock_examine);
+
 
     },
     //终审文档
     last_edit: function($this) {
         var $tr = $this.closest('tr');
         var id = $tr.attr('tr_id');
+        common.data.news_id = id;
         common.data.ajax4.uid = common.k;
         common.data.ajax4.newsId = id;
-        ajax_news.lockNews(common.data.ajax4, undefined);
-        location.href = '' + '/page/p/news/toFinal?id=' + id + '&storeType=' + common.data.storeType;
+        common.data.edit_type = 1;
+        ajax_news.lockNews(common.data.ajax4, common.lock_examine);
+
 
     },
     //点击比对反应

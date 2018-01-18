@@ -876,6 +876,7 @@ var main = {
     // 处理变更
     submit_change: function submit_change(res) {
         if (res.code == 1) {
+            layer.msg('保存成功!');
             main.reset_html();
             $('.change2 .check').removeClass('act');
             $('body>.pop').addClass('hide');
@@ -909,7 +910,7 @@ var main = {
 
             };
         } else {
-            alert('数据错误!请检查!');
+            layer.msg('数据错误!请检查!');
         }
     },
 
@@ -1141,7 +1142,8 @@ var main = {
             }
 
         } else {
-            alert('金额参数缺失!,请仔细核对,防止结算错误!');
+            layer.msg('金额参数缺失!,请仔细核对,防止结算错误!');
+          
         }
 
     },

@@ -394,7 +394,7 @@ var main = {
         if (main.data.table == 1) {
             v1 = 'CMS002';
         } else if (main.data.table == 2) {
-            v1 = 'CMS002,CMS003';
+            v1 = 'CMS003';
         } else if (main.data.table == 3) {
             //v1 = 'CMS004';
         } else {
