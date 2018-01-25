@@ -36,7 +36,7 @@ var main = {
         //渠道 jq
         $channel: '',
         //模拟渠道section[]
-        channel_key: $('.val1').text(),
+        channel_key: 0,
         //临时存取数组
         arrary_1: [],
         arrary_2: [],
@@ -127,7 +127,7 @@ var main = {
         $('.left-list .item3').addClass('active');
         $('#switch .switch1').addClass('active');
         $('.nav_list .news').addClass('active');
-        ajax_news.getNewsList(main.data.ajax1, main.tableno_show);
+        ajax_cms.getNewsList(main.data.ajax1, main.tableno_show);
     },
     //列表展示
     tableno_show: function tableno_show(data) {
@@ -296,6 +296,7 @@ var main = {
 
     //变更稿件状态
     click_change: function click_change($this) {
+        main.data.channel_key=$('.val1').text();
         var key = main.data.channel_key;
         var $tr = $this.closest('tr');
         var news_id = $tr.attr('tr_id');
@@ -305,10 +306,10 @@ var main = {
         main.data.channel = [];
         main.data.channel_save = JSON.parse(channel_save);
         //console.log(main.data.channel_save);
-        ajax_news.getChannel(main.data.ajax5, main.data_channel);
+        ajax_cms.getChannel(main.data.ajax5, main.data_channel);
         main.data.ajax6.uid = common.k;
         main.data.ajax6.newsId = news_id;
-        ajax_news.info(main.data.ajax6, main.text_length);
+        ajax_cms.info(main.data.ajax6, main.text_length);
     },
     //计算字数
     text_length: function text_length(res) {
@@ -327,6 +328,7 @@ var main = {
 
     //渠道信息
     data_channel: function data_channel(res) {
+        main.data.channel_key=$('.val1').text();
         var key = main.data.channel_key;
         main.data.channel_1 = res.context;
         main.data.channel = main.data.channel.concat(res.context);
@@ -419,7 +421,7 @@ var main = {
         } else {
             main.data.ajax5.did = 'CJGJZK';
         }
-        ajax_news.getChannel(main.data.ajax5, main.data_channel2);
+        ajax_cms.getChannel(main.data.ajax5, main.data_channel2);
     },
 
 
@@ -700,7 +702,7 @@ var main = {
         $channel.find('.money_i select').html('<option value="0">待加载</option>');
         $channel.find('.measure_i select').html('<option value="0">待加载</option>');
         main.data.ajax4.channelId = val;
-        ajax_news.getSubdivide(main.data.ajax4, main.select_money);
+        ajax_cms.getSubdivide(main.data.ajax4, main.select_money);
     },
     //记录渠道渲染
     select_channel_record: function select_channel_record($this) {
@@ -871,7 +873,7 @@ var main = {
                 return;
         }
         // main.submit_change
-        ajax_news.updateNews(main.data.ajax3, main.submit_change);
+        ajax_cms.updateNews(main.data.ajax3, main.submit_change);
     },
     // 处理变更
     submit_change: function submit_change(res) {
@@ -935,7 +937,7 @@ var main = {
             main.data.ajax1.start = 0;
             main.data.ajax1.size = 20;
             main.data.ajax1.uid = common.k;
-            ajax_news.getNewsList(main.data.ajax1, main.tableno_show);
+            ajax_cms.getNewsList(main.data.ajax1, main.tableno_show);
             $('.tableno').removeClass('hide');
         } else {
             main.data.table = 2;
@@ -948,7 +950,7 @@ var main = {
             main.data.ajax1.size = 20;
 
             main.data.ajax1.uid = common.k;
-            ajax_news.getNewsList(main.data.ajax1, main.tableyes_show);
+            ajax_cms.getNewsList(main.data.ajax1, main.tableyes_show);
             $('.tableyes').removeClass('hide');
         }
     },
@@ -965,14 +967,14 @@ var main = {
         main.data.ajax1.start = 0;
         main.data.ajax1.size = 20;
         if (main.data.table == 1) {
-            ajax_news.getNewsList(main.data.ajax1, main.tableno_show);
+            ajax_cms.getNewsList(main.data.ajax1, main.tableno_show);
         } else {
-            ajax_news.getNewsList(main.data.ajax1, main.tableyes_show);
+            ajax_cms.getNewsList(main.data.ajax1, main.tableyes_show);
         }
     },
     //分页器跳转
     skip_jump: function skip_jump(data, fun) {
-        ajax_news.getNewsList(data, fun);
+        ajax_cms.getNewsList(data, fun);
     },
     //研报普通切换
     switch_type: function switch_type($this) {
@@ -988,11 +990,11 @@ var main = {
             main.data.ajax5.storeType = 2;
             common.data.storeType = 2;
         }
-        ajax_news.getChannel(main.data.ajax5, main.select_channel_show);
+        ajax_cms.getChannel(main.data.ajax5, main.select_channel_show);
         if (main.data.table == 1) {
-            ajax_news.getNewsList(main.data.ajax1, main.tableno_show);
+            ajax_cms.getNewsList(main.data.ajax1, main.tableno_show);
         } else {
-            ajax_news.getNewsList(main.data.ajax1, main.tableyes_show);
+            ajax_cms.getNewsList(main.data.ajax1, main.tableyes_show);
         }
     },
 
@@ -1057,7 +1059,7 @@ var main = {
                 main.data.channel_select = 1;
                 main.data.cjgjzk = 1;
                 // main.data.ajax5.did = 'CJGJZK';
-                // ajax_news.getChannel(main.data.ajax5, main.data_channel2);
+                // ajax_cms.getChannel(main.data.ajax5, main.data_channel2);
                 $('.channel .channel_i option').each(function() {
                     if (this.value >= 5) {
                         $(this).show();
@@ -1078,7 +1080,7 @@ var main = {
                 // main.data.channel_select = 2;
                 main.data.lwzk = 1;
                 // main.data.ajax5.did = 'LWZK';
-                // ajax_news.getChannel(main.data.ajax5, main.data_channel2);
+                // ajax_cms.getChannel(main.data.ajax5, main.data_channel2);
                 $('.channel .channel_i option').each(function() {
                     if (this.value <= 4) {
                         $(this).show();

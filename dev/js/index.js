@@ -12,7 +12,7 @@
                 size: 8
             },
             ajax2: {
-                name: 'getGatherNewsList',
+                name: 'getGatherNewsList/getHotNews',
                 context: undefined,
                 field: undefined
             },
@@ -41,7 +41,7 @@
         },
         //重置
         resest: function() {
-            ajax_news.index(common.theRequest, main.verify);
+            ajax_cms.index(common.theRequest, main.verify);
         },
         //条件刷新
         verify: function(res) {
@@ -59,11 +59,11 @@
         },
         //我的信息
         myMessage: function() {
-            ajax_news.myMessage(main.data.ajax1, main.message_show);
+            ajax_cms.myMessage(main.data.ajax1, main.message_show);
         },
         //获取新闻
         getGatherNewsList: function() {
-            ajax_news.getGatherNewsList(main.data.ajax2, main.news_show);
+            ajax_cms.getGatherNewsList(main.data.ajax2, main.news_show);
         },
         //新闻显示
         news_show: function(res) {
@@ -100,7 +100,7 @@
             var message_id = $this.attr('message_id');
             main.message_url = $this.attr('message_url');
             main.data.ajax3.msgRevIdStr = message_id;
-            ajax_news.updateMsgStatus(main.data.ajax3, main.jump);
+            ajax_cms.updateMsgStatus(main.data.ajax3, main.jump);
         },
         //跳转
         jump: function() {

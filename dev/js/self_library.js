@@ -27,7 +27,7 @@ var main = {
         main.data.ajax1.uid = common.k;
         $('.left-list .item1').addClass('active');
         $('.nav_list .news').addClass('active');
-        ajax_news.myNewsList(main.data.ajax1, main.table_show);
+        ajax_cms.myNewsList(main.data.ajax1, main.table_show);
     },
     //列表展示
     table_show: function(data) {
@@ -93,11 +93,11 @@ var main = {
         main.data.ajax1.field = k2;
         main.data.ajax1.start = 0;
         main.data.ajax1.size = 20;
-        ajax_news.myNewsList(main.data.ajax1, main.table_show);
+        ajax_cms.myNewsList(main.data.ajax1, main.table_show);
     },
     //分页器跳转
     skip_jump: function(data, fun) {
-        ajax_news.myNewsList(data, fun);
+        ajax_cms.myNewsList(data, fun);
     },
     //切换库类
     switch_type: function($this) {
@@ -110,7 +110,7 @@ var main = {
             main.data.ajax1.storeType = 2;
             common.data.storeType = 2;
         }
-        ajax_news.myNewsList(main.data.ajax1, main.table_show);
+        ajax_cms.myNewsList(main.data.ajax1, main.table_show);
     }
 };
 main.start();

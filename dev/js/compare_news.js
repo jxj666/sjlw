@@ -31,7 +31,7 @@ var main = {
         common.new_role_control();
         main.data.ajax1.newsId = common.theRequest.id;
         $('.nav_list .news').addClass('active');
-        ajax_news.getCompareNews(main.data.ajax1, main.table_show);
+        ajax_cms.getCompareNews(main.data.ajax1, main.table_show);
     },
     //列表显示
     table_show: function(res) {
@@ -62,7 +62,7 @@ var main = {
         var arr = mark.slice(0, -1).split(',');
         main.data.mark_1 = arr[0];
         main.data.mark_2 = arr[1];
-        ajax_news.compareNews(main.data.ajax2, main.different);
+        ajax_cms.compareNews(main.data.ajax2, main.different);
     },
     //比较内容导入
     different: function(res) {
@@ -82,7 +82,7 @@ var main = {
     },
     //分页器跳转
     skip_jump: function(data, fun) {
-        ajax_news.getCompareNews(data, fun);
+        ajax_cms.getCompareNews(data, fun);
     }
 };
 main.start();

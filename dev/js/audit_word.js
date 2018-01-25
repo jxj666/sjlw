@@ -50,7 +50,7 @@ var main = {
 
 
         $('.nav_list .news').addClass('active');
-        ajax_news.getReviewNews(main.data.ajax1, main.table12_show);
+        ajax_cms.getReviewNews(main.data.ajax1, main.table12_show);
     },
     //角色管理
     role_control: function() {
@@ -253,9 +253,9 @@ var main = {
             main.data.ajax1.uid = common.k;
             main.data.ajax1.isAsign = main.data.isAsign;
             if (main.data.table == 1) {
-                ajax_news.getReviewNews(main.data.ajax1, main.table12_show);
+                ajax_cms.getReviewNews(main.data.ajax1, main.table12_show);
             } else if (main.data.table == 2) {
-                ajax_news.getReviewNews(main.data.ajax1, main.table3_show);
+                ajax_cms.getReviewNews(main.data.ajax1, main.table3_show);
             }
         } else if ($this.hasClass('switch2')) {
             $('.audit_th1').removeClass('hide');
@@ -263,9 +263,9 @@ var main = {
             main.data.ajax1.uid = common.k;
             main.data.ajax1.isAsign = main.data.isAsign;
             if (main.data.table == 1) {
-                ajax_news.getReviewNews(main.data.ajax1, main.table12_show);
+                ajax_cms.getReviewNews(main.data.ajax1, main.table12_show);
             } else if (main.data.table == 2) {
-                ajax_news.getReviewNews(main.data.ajax1, main.table3_show);
+                ajax_cms.getReviewNews(main.data.ajax1, main.table3_show);
             }
         }
     },
@@ -293,7 +293,7 @@ var main = {
             };
             main.data.ajax1.uid = common.k;
             main.data.ajax1.isAsign = main.data.isAsign;
-            ajax_news.getReviewNews(main.data.ajax1, main.table12_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table12_show);
             $('.table12').removeClass('hide');
         } else if ($this.hasClass('switch2')) {
             $('.audit2 li').removeClass('active');
@@ -313,7 +313,7 @@ var main = {
             };
             main.data.ajax1.uid = common.k;
             main.data.ajax1.isAsign = main.data.isAsign;
-            ajax_news.getReviewNews(main.data.ajax1, main.table3_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table3_show);
             $('.table3').removeClass('hide');
         } else if ($this.hasClass('switch3')) {
             $('.audit2').hide();
@@ -330,7 +330,7 @@ var main = {
                 size: 20
             };
             main.data.ajax1.uid = common.k;
-            ajax_news.getReviewNews(main.data.ajax1, main.table3_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table3_show);
             $('.table3').removeClass('hide');
         } else if ($this.hasClass('switch6')) {
             $('.audit2').hide();
@@ -347,7 +347,7 @@ var main = {
                 size: 20
             };
             main.data.ajax1.uid = common.k;
-            ajax_news.getReviewNews(main.data.ajax1, main.table3z_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table3z_show);
             $('.table3').removeClass('hide');
         } else if ($this.hasClass('switch4')) {
             $('.audit2').hide();
@@ -364,7 +364,7 @@ var main = {
                 size: 20
             };
             main.data.ajax1.uid = common.k;
-            ajax_news.getReviewNews(main.data.ajax1, main.tablemy_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.tablemy_show);
             $('.tablemy').removeClass('hide');
         } else if ($this.hasClass('switch5')) {
             $('.audit2').hide();
@@ -381,7 +381,7 @@ var main = {
                 size: 20
             };
             main.data.ajax1.uid = common.k;
-            ajax_news.getReviewNews(main.data.ajax1, main.tableself_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.tableself_show);
             $('.tableself').removeClass('hide');
         } else {
             layer.msg('表单数据错误');
@@ -402,7 +402,7 @@ var main = {
             return;
         }
         main.data.ajax3.roleId = encodeURI(v1);
-        ajax_news.getUsers(main.data.ajax3, main.pop_select_show);
+        ajax_cms.getUsers(main.data.ajax3, main.pop_select_show);
         $('body>.pop').removeClass('hide');
         var $tr = $this.closest('tr');
         main.tr = $tr;
@@ -422,7 +422,7 @@ var main = {
         main.data.ajax2.asignUid = arr1[0];
         main.data.ajax2.stage = main.data.table;
         main.data.ajax2.roleId = arr1[1];
-        ajax_news.asignNews(main.data.ajax2, main.send_audit_show);
+        ajax_cms.asignNews(main.data.ajax2, main.send_audit_show);
         main.tr.hide();
     },
     send_audit_show: function(data) {
@@ -444,24 +444,24 @@ var main = {
         main.data.ajax1.start = 0;
         main.data.ajax1.size = 20;
         if (main.data.table == 1) {
-            ajax_news.getReviewNews(main.data.ajax1, main.table12_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table12_show);
         } else if (main.data.table == 2) {
-            ajax_news.getReviewNews(main.data.ajax1, main.table3_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table3_show);
         } else if (main.data.table == 3) {
-            ajax_news.getReviewNews(main.data.ajax1, main.table3_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table3_show);
         } else if (main.data.table == 6) {
-            ajax_news.getReviewNews(main.data.ajax1, main.table3z_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.table3z_show);
         } else if (main.data.table == 4) {
-            ajax_news.getReviewNews(main.data.ajax1, main.tablemy_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.tablemy_show);
         } else if (main.data.table == 5) {
-            ajax_news.getReviewNews(main.data.ajax1, main.tableself_show);
+            ajax_cms.getReviewNews(main.data.ajax1, main.tableself_show);
         } else {
             layer.msg('表单选择数据错误!');
         }
     },
     //分页器跳转
     skip_jump: function(data, fun) {
-        ajax_news.getReviewNews(data, fun);
+        ajax_cms.getReviewNews(data, fun);
     }
 };
 

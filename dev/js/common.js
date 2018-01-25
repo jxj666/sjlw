@@ -12,6 +12,15 @@ var common = {
         edit_type: 0,
         storeType: 1,
         news_id: 0,
+        user_id: 0,
+        did_arr: [],
+        did_obj: {
+            'ZKS': '周刊社',
+            'LWZK': '瞭望智库',
+            'HQZZ': '环球杂志',
+            'DFZK': '东方周刊',
+            'CJGJZK': '财经国家周刊'
+        },
         ajax1: {
             name: 'getTrumpet'
         },
@@ -27,13 +36,21 @@ var common = {
             name: 'lockNews',
             newsId: undefined
         },
-
         ajax5: {
             name: 'getUsers',
             roleId: 'CMS001'
         },
         ajax6: {
             name: 'getAllAuthor'
+        },
+        ajax7: {
+            name: 'getUserDepartment',
+            uid: 0,
+        },
+        ajax8: {
+            name: 'changeDepartment',
+            uid: 0,
+            did: 0,
         }
     },
     //获取储存
@@ -84,6 +101,11 @@ var common = {
         common.role.val18 = v2.search(/CMS018/) > -1 ? true : false;
         common.role.val19 = v2.search(/CMS019/) > -1 ? true : false;
         common.role.val20 = v2.search(/CMS020/) > -1 ? true : false;
+        $('#did').hide();
+        common.data.did_arr = $('.val11').text().split(',');
+        common.data.ajax7.uid = $('.val3').text();
+        ajax_cms.getUserDepartment(common.data.ajax7, common.did_view);
+
     },
     //新闻部分管理
     new_role_control: function new_role_control() {
@@ -182,16 +204,35 @@ var common = {
         //研报总审2
         if (common.role.val19) {}
         if (common.role.val20) {}
-    },
 
+    },
+    //显示部门选择
+    did_view: function(res, name) {
+        var now_did = res.context.did;
+        $('.val1').html(now_did);
+        var did_arr = common.data.did_arr;
+        var did_obj = common.data.did_obj;
+        if (did_arr.length > 1) {
+            var didHtml = '';
+            for (var i = 0; i < did_arr.length; i++) {
+                if (now_did == did_arr[i]) {
+
+                    didHtml += '<option value="' + did_arr[i] + '" selected>' + did_obj[did_arr[i]] + '</option>';
+                } else {
+                    didHtml += '<option value="' + did_arr[i] + '">' + did_obj[did_arr[i]] + '</option>';
+                }
+            }
+            $('#did').html(didHtml).show();
+        }
+    },
     //打印 ajax 回调
     console_data: function console_data(res, name) {
         common.i += 1;
         if (res.code != '1') {
             //console.log('运行排序:' + common.i, name + '接口错误! ->' + res.msg);
         } else {
-                //console.log('运行排序:' + common.i, '接口:' + name, res);
-            }
+            //console.log('运行排序:' + common.i, '接口:' + name, res);
+        }
     },
     //处理单个 url 数据
     getQueryString: function getQueryString(name) {
@@ -208,7 +249,7 @@ var common = {
         str = str.substr(1);
         var theRequest = {};
         var strs = str.split('&');
-        $.each(strs, function (i, v) {
+        $.each(strs, function(i, v) {
             theRequest[v.split('=')[0]] = decodeURIComponent(v.split('=')[1]);
         });
         common.theRequest = theRequest;
@@ -221,7 +262,7 @@ var common = {
             url: url,
             method: method,
             data: data
-        }).done(function (res) {
+        }).done(function(res) {
             common.console_data(res, port);
             if (res.code != '1') {
                 layer.msg(res.msg ? res.msg : port + ' 返回数据出错!');
@@ -229,14 +270,14 @@ var common = {
             } else {
                 callback && callback(res);
             }
-        }).fail(function (jqXHR, textStatus) {
+        }).fail(function(jqXHR, textStatus) {
             //console.log(jqXHR, textStatus);
         });
     },
     //获取通知信息
     getTrumpet: function getTrumpet() {
         common.data.ajax1.uid = common.k;
-        ajax_news.getTrumpet(common.data.ajax1, common.message_show);
+        ajax_cms.getTrumpet(common.data.ajax1, common.message_show);
     },
     //通知信息展示
     message_show: function message_show(res) {
@@ -310,50 +351,59 @@ var common = {
     },
     //获取选择列表
     getPullDownList: function getPullDownList() {
-        ajax_news.getPullDownList(undefined, common.select_show);
+        ajax_cms.getPullDownList(undefined, common.select_show);
     },
     //获取列表
     getAllAuthor: function getAllAuthor() {
-        ajax_news.getUsers(common.data.ajax5, common.author_show);
+        ajax_cms.getUsers(common.data.ajax5, common.author_show);
     },
     //初试元素绑定
     bind_element: function bind_element() {
-        $('table').on('click', '.t_bidui', function () {
+        $('table').on('click', '.t_bidui', function() {
             common.click_bidui($(this));
         });
-        $('.nav_user .hirt').on('click', function () {
+        $('.nav_user .hirt').on('click', function() {
             $('.pop_alert').toggleClass('hide');
         });
         // $('.nav_user .user').on('click', function() {
         //     $('.pop_exit').toggleClass('hide');
         // })
-        $('.contain table').on('click', '.t_bianji', function (e) {
+        $('.contain table').on('click', '.t_bianji', function(e) {
             common.change($(this));
         });
-        $('.contain table').on('click', '.t_shenhe', function (e) {
+        $('.contain table').on('click', '.t_shenhe', function(e) {
             common.edit($(this));
         });
-        $('.contain table').on('click', '.t_zhonshen', function (e) {
+        $('.contain table').on('click', '.t_zhonshen', function(e) {
             common.last_edit($(this));
         });
-        $('.contain table').on('click', '.t_yulan', function (e) {
+        $('.contain table').on('click', '.t_yulan', function(e) {
             common.look($(this));
         });
-        $('.contain table').on('click', '.t_chakan', function (e) {
+        $('.contain table').on('click', '.t_chakan', function(e) {
             common.look_details($(this));
         });
-        $('.contain table').on('click', '.t_daochu', function (e) {
+        $('.contain table').on('click', '.t_daochu', function(e) {
             common.download($(this));
         });
-        $('.contain table').on('click', '.type2', function (e) {
+        $('.contain table').on('click', '.type2', function(e) {
             common.look($(this));
         });
-        $('.pop_look .close').on('click', function (e) {
+        $('.pop_look .close').on('click', function(e) {
             $('.pop_look').addClass('hide');
         });
-        $('.pop_exit a').on('click', function () {
-            ajax_news.logout(undefined, common.reload);
+        $('.pop_exit a').on('click', function() {
+            ajax_cms.logout(undefined, common.reload);
         });
+        $('#did').on('change', function() {
+            common.data.ajax8.did = $(this).val();
+            common.data.ajax8.uid = $('.val3').text();
+            ajax_cms.changeDepartment(common.data.ajax8, common.to_index);
+        })
+    },
+    //回首页
+    to_index: function() {
+        location.replace('/page/p/index/index');
     },
     //重新加载
     reload: function reload() {
@@ -375,7 +425,7 @@ var common = {
         var id = $tr.attr('tr_id');
         common.data.ajax2.uid = common.k;
         common.data.ajax2.newsId = id;
-        ajax_news.info(common.data.ajax2, common.text_show);
+        ajax_cms.info(common.data.ajax2, common.text_show);
     },
     //查看文档
     look_details: function look_details($this) {
@@ -455,7 +505,7 @@ var common = {
         common.data.ajax4.uid = common.k;
         common.data.ajax4.newsId = id;
         common.data.edit_type = 0;
-        ajax_news.lockNews(common.data.ajax4, common.lock_examine);
+        ajax_cms.lockNews(common.data.ajax4, common.lock_examine);
     },
     //终审文档
     last_edit: function last_edit($this) {
@@ -465,7 +515,7 @@ var common = {
         common.data.ajax4.uid = common.k;
         common.data.ajax4.newsId = id;
         common.data.edit_type = 1;
-        ajax_news.lockNews(common.data.ajax4, common.lock_examine);
+        ajax_cms.lockNews(common.data.ajax4, common.lock_examine);
     },
     //点击比对反应
     click_bidui: function click_bidui($this) {
@@ -491,7 +541,7 @@ var common = {
         var html1 = '<div class="first_div"><span>\u5171' + total + '\u6761</span></div><div><span class="sum">\u6BCF\u987520\u6761</span></div><div class="prev_est"></div><div class="prev"></div><div class="page_num"><div class="num num1 ' + (prev < min && "hide") + '">' + prev + '</div><div class="num num2 active">' + now + '</div><div class="num num3 ' + (next > max && "hide") + '">' + next + '</div><div class="clear"></div></div><div class="last"></div><div class="last_est"></div><div><span class="intro">\u5F53\u524D' + now + '/' + max + '\u9875</span></div><div class="last_div"><span>\u8F6C\u5230\u7B2C<input type="text" name="" class="arrow">\u9875</span></div>';
         $('.m_skip').html(html1);
         $(".m_skip").off();
-        $('.m_skip').on('click', 'div', function (e) {
+        $('.m_skip').on('click', 'div', function(e) {
             if ($(this).hasClass('prev_est')) {
                 if (now > 1) {
                     data.start = 0;
@@ -525,7 +575,7 @@ var common = {
             ajax_fun(data, table_show);
         });
         $('.m_skip .arrow').off();
-        $('.m_skip .arrow').on('blur', function () {
+        $('.m_skip .arrow').on('blur', function() {
             var v = $('.m_skip .arrow').val();
             var k = parseInt(v);
             if (k > 0 && k < max + 1) {

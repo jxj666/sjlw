@@ -3,7 +3,7 @@
 
 // function(url, method, data, explain, callback)
 
-var ajax_news = {
+var ajax_cms = {
     getNewsList: function(data, callback) {
         var url = '../../../v1/p/news/getNewsList';
         var method = 'GET';
@@ -125,9 +125,9 @@ var ajax_news = {
         common.ajax(url, method, data, explain, callback);
     },
     getGatherNewsList: function(data, callback) {
-        var url = '../../../v1/p/cnews/getGatherNewsList';
+        var url = '../../../v1/p/cnews/getHotNews';
         var method = 'get';
-        var explain = '根据条件查询采集库列表';
+        var explain = '根据条件查询采集库列表(全部:getGatherNewsList/热点:getHotNews)';
         common.ajax(url, method, data, explain, callback);
     },
     updateMsgStatus: function(data, callback) {
@@ -153,5 +153,17 @@ var ajax_news = {
         var method = 'get';
         var explain = '获取渠道';
         common.ajax(url, method, data, explain, callback);
-    }
+    },
+    getUserDepartment: function(data, callback) {
+        var url = '../../../v1/p/user/getUserDepartment';
+        var method = 'get';
+        var explain = '获取用户部门';
+        common.ajax(url, method, data, explain, callback);
+    },
+    changeDepartment: function(data, callback) {
+        var url = '../../../v1/p/user/changeDepartment';
+        var method = 'post';
+        var explain = '选择用户部门';
+        common.ajax(url, method, data, explain, callback);
+    },
 }
