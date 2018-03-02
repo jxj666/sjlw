@@ -444,7 +444,7 @@ var common = {
             if (newsMedia[i].type == 1) {
                 imgs.push(newsMedia[i]);
             } else if (newsMedia[i].type == 3) {
-                imgs.push(newsMedia[i]);
+                videos.push(newsMedia[i]);
             } else {
                 continue;
             }
